@@ -6,8 +6,10 @@ import com.yang.snake.entities.Snake;
 import com.yang.snake.listener.SnakeListener;
 import com.yang.snake.view.GamePanel;
 
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 
 /**
  * Created by Yang on 1/16/2017.
@@ -50,10 +52,25 @@ public class Controller extends KeyAdapter implements SnakeListener {
     @Override
     public void snakeMoved(Snake snake) {
         gamePanel.display(snake, food, ground);
+
+        if (food.isSnakeEatFood(snake)) {
+            snake.eatFood();
+            food.newFood(ground.getPoint());
+        }
+
+        if (ground.isSnakeEatRock(snake)) {
+            snake.die();
+        }
+        if (snake.isEatBody()) {
+            snake.die();
+        }
+
     }
+
 
     // start the game
     public void newGame() {
         snake.start();
+        food.newFood(ground.getPoint());
     }
 }

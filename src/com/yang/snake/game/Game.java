@@ -4,6 +4,7 @@ import com.yang.snake.controller.Controller;
 import com.yang.snake.entities.Food;
 import com.yang.snake.entities.Ground;
 import com.yang.snake.entities.Snake;
+import com.yang.snake.util.Global;
 import com.yang.snake.view.GamePanel;
 
 import javax.swing.*;
@@ -22,11 +23,15 @@ public class Game {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 300);
+        gamePanel.setSize(Global.WIDTH * Global.CELL_SIZE,
+                Global.HEIGHT * Global.CELL_SIZE);
+        frame.setSize(Global.WIDTH * Global.CELL_SIZE + 10,
+                Global.HEIGHT * Global.CELL_SIZE + 35);
         frame.add(gamePanel, BorderLayout.CENTER);
 
         gamePanel.addKeyListener(controller);
         snake.addSnakeListener(controller);
+        frame.addKeyListener(controller);
 
         frame.setVisible(true);
         controller.newGame();
