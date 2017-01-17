@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         // display again
         this.ground.drawMe();
-        this.snake.drawMe();
+        this.snake.drawMe(g);
         this.food.drawMe();
     }
 }
